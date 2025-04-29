@@ -1,14 +1,17 @@
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router';
-import { auth } from '../../firebase/firebase.init';
+import { ValueContext } from '../../layout/Root';
 
 const SignIn = () => {
-    const handleSignIn = e => {
+
+    const {handleLogin} = use(ValueContext)
+
+
+    const handleSubmit = e => {
         e.preventDefault()
         const email = e.target.email.value;
         const password = e.target.password.value;
-        signInWithEmailAndPassword(auth, email, password)
+        handleLogin(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log(user)
@@ -53,7 +56,7 @@ const SignIn = () => {
                 <p className="px-3 dark:text-gray-600">OR</p>
                 <hr className="w-full dark:text-gray-600" />
             </div>
-            <form onSubmit={handleSignIn} className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="space-y-4">
                     <div className="space-y-2">
                         <label name="email" className="block text-sm">Email address</label>

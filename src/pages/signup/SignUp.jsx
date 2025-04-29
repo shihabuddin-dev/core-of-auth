@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router';
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../../firebase/firebase.init';
+import { ValueContext } from '../../layout/Root';
 
 const SignUp = () => {
-    const handleSignUp = e => {
+    const { handleSingUp } = use(ValueContext)
+
+    const handleSubmit = e => {
         e.preventDefault()
         // const fullName = e.target.fullname.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
         // const confirmPassword = e.target.confirmPassword.value;
-        createUserWithEmailAndPassword(auth, email, password)
+        handleSingUp(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log(user)
@@ -28,7 +29,7 @@ const SignUp = () => {
                 <h1 className="my-3 text-4xl font-bold">Sign Up</h1>
                 <p className="text-sm dark:text-gray-600">Sign Up to access your account</p>
             </div>
-            <form onSubmit={handleSignUp} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-3">
                     <div>
                         <label className="block mb-2 text-sm">Full Name</label>

@@ -63,8 +63,8 @@ const Nav = () => {
                 </ul>
                 <ul className=" items-center hidden space-x-8 lg:flex">
 
-                    <Button className={pathname === '/signin' && 'bg-gray-200 text-white'} onClick={() => navigate('/signin')} label='Sign In' />
-                    <Button className={pathname === '/signup' && 'bg-gray-200 text-white'} onClick={() => navigate('/signup')} label='Sign Up' />
+                    <Button className={pathname === '/signin' && 'bg-gray-300'} onClick={() => navigate('/signin')} label='Sign In' />
+                    <Button className={pathname === '/signup' && 'bg-gray-300'} onClick={() => navigate('/signup')} label='Sign Up' />
 
                 </ul>
                 <div className="lg:hidden">
@@ -137,8 +137,8 @@ const Nav = () => {
                                 <nav>
                                     <ul className="space-y-4">
                                         {links}
-                                        <Button className={pathname === '/signin' && 'bg-gray-200 text-white'} onClick={() => navigate('/signin')} label='Sign In' />
-                                        <Button className={pathname === '/signup' && 'bg-gray-200 text-white'} onClick={() => navigate('/signup')} label='Sign Up' />
+                                        <Button className={pathname === '/signin' && 'bg-gray-300'} onClick={() => navigate('/signin')} label='Sign In' />
+                                        <Button className={pathname === '/signup' && 'bg-gray-300'} onClick={() => navigate('/signup')} label='Sign Up' />
                                     </ul>
                                 </nav>
                             </div>
