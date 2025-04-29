@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router';
 import Button from '../button/Button';
+import { ValueContext } from '../../layout/Root';
 
 const Nav = () => {
+    const {handleLogOut,user}=use(ValueContext)
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navigate = useNavigate()
     const { pathname } = useLocation()
+
 
     const links = <>
         <li>
@@ -65,6 +68,7 @@ const Nav = () => {
 
                     <Button className={pathname === '/signin' && 'bg-gray-300'} onClick={() => navigate('/signin')} label='Sign In' />
                     <Button className={pathname === '/signup' && 'bg-gray-300'} onClick={() => navigate('/signup')} label='Sign Up' />
+                   { user&&<Button onClick={handleLogOut} label='Log Out' />}
 
                 </ul>
                 <div className="lg:hidden">

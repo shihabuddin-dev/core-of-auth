@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { use } from 'react';
+import { ValueContext } from '../../layout/Root';
 
 const About = () => {
+    const {user}=use(ValueContext)
+    console.log(user)
     return (
         <div>
             about

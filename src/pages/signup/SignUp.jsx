@@ -7,22 +7,50 @@ const SignUp = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        // const fullName = e.target.fullname.value;
+        const fullName = e.target.fullname.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        // const confirmPassword = e.target.confirmPassword.value;
+        const confirmPassword = e.target.confirmPassword.value;
+        console.log(fullName)
+
+        // password validation 
+        if (password.length < 6) {
+            alert('Password Must be more than 6 character')
+            return
+        }
+        if (password !== confirmPassword) {
+            alert('Password and confirm password must be same')
+            return
+        }
+        if (!/(?=.*[a-z])/.test(password)) {
+            alert('Password Must be includes One small letter')
+            return
+        }
+        if (!/(?=.*[A-Z])/.test(password)) {
+            alert('Password Must be includes Uppercase letter')
+            return
+        }
+        if (!/(?=.*\d)/.test(password)) {
+            alert('Password Must be includes One digit Number')
+            return
+        }
+
         handleSingUp(email, password)
             .then((userCredential) => {
-                const user = userCredential.user;
-                console.log(user)
+                // const user = userCredential.currentUser;
+                console.log(userCredential)
+                alert('Success')
+                // setUser(currentUser)
 
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorCode, errorMessage)
+                alert(errorMessage)
             });
     }
+
     return (
         <div className="flex flex-col max-w-md  mx-auto p-6 rounded-md sm:p-10 dark:bg-gray-50 ">
             <div className="mb-6 text-center">

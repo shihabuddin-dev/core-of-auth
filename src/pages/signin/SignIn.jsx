@@ -3,9 +3,7 @@ import { Link } from 'react-router';
 import { ValueContext } from '../../layout/Root';
 
 const SignIn = () => {
-
-    const {handleLogin} = use(ValueContext)
-
+    const { handleLogin } = use(ValueContext)
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -13,16 +11,15 @@ const SignIn = () => {
         const password = e.target.password.value;
         handleLogin(email, password)
             .then((userCredential) => {
-                const user = userCredential.user;
-                console.log(user)
+                const currentUser = userCredential.user;
+                console.log(currentUser)
+              
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorCode, errorMessage)
             });
-
-
     }
 
     return (
