@@ -1,35 +1,41 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router';
+import Button from '../button/Button';
 
 const Nav = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const navigate = useNavigate()
+    const { pathname } = useLocation()
+
     const links = <>
         <li>
             <NavLink
-                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">
+                to='/'
+                className="font-medium">
                 Home
             </NavLink>
         </li>
         <li>
             <NavLink
-                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">
-                About us
+                to='/about'
+                className="font-medium">
+                About Us
             </NavLink>
         </li>
         <li>
             <NavLink
-                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">
+                to='/blogs'
+                className="font-medium ">
                 Blogs
             </NavLink>
         </li>
+
     </>
     return (
         <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
             <div className="relative flex items-center justify-between">
-                <a
-                    href="/"
-                    aria-label="Company"
-                    title="Company"
+                <Link
+                    to='/'
                     className="inline-flex items-center"
                 >
                     <svg
@@ -48,29 +54,18 @@ const Nav = () => {
                         <rect x="14" y="11" width="7" height="12" />
                     </svg>
                     <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                        CfA
+                        cfa
                     </span>
-                </a>
-                <ul className="items-center hidden space-x-8 lg:flex">
+                </Link>
+
+                <ul className=" items-center hidden space-x-8 lg:flex">
                     {links}
                 </ul>
-                <ul className="items-center hidden space-x-8 lg:flex">
-                    <li>
-                        <a
-                           
-                            className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                        >
-                            Sign In
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                           
-                            className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                        >
-                            Sign up
-                        </a>
-                    </li>
+                <ul className=" items-center hidden space-x-8 lg:flex">
+
+                    <Button className={pathname === '/signin' && 'bg-gray-200 text-white'} onClick={() => navigate('/signin')} label='Sign In' />
+                    <Button className={pathname === '/signup' && 'bg-gray-200 text-white'} onClick={() => navigate('/signup')} label='Sign Up' />
+
                 </ul>
                 <div className="lg:hidden">
                     <button
@@ -99,10 +94,8 @@ const Nav = () => {
                             <div className="p-5 bg-white border rounded shadow-sm">
                                 <div className="flex items-center justify-between mb-4">
                                     <div>
-                                        <a
-                                            href="/"
-                                            aria-label="Company"
-                                            title="Company"
+                                        <Link
+                                            to='/'
                                             className="inline-flex items-center"
                                         >
                                             <svg
@@ -121,9 +114,9 @@ const Nav = () => {
                                                 <rect x="14" y="11" width="7" height="12" />
                                             </svg>
                                             <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                                                Cfa
+                                                cfa
                                             </span>
-                                        </a>
+                                        </Link>
                                     </div>
                                     <div>
                                         <button
@@ -143,9 +136,9 @@ const Nav = () => {
                                 </div>
                                 <nav>
                                     <ul className="space-y-4">
-
                                         {links}
-
+                                        <Button className={pathname === '/signin' && 'bg-gray-200 text-white'} onClick={() => navigate('/signin')} label='Sign In' />
+                                        <Button className={pathname === '/signup' && 'bg-gray-200 text-white'} onClick={() => navigate('/signup')} label='Sign Up' />
                                     </ul>
                                 </nav>
                             </div>
