@@ -1,15 +1,16 @@
-
 @import "tailwindcss";
 
 
 a.active {
   color: blue;
-  border-bottom: 2px solid blue;
-padding-bottom: 2px;
+  border-bottom: 1.8px solid blue;
+  padding-bottom: 3px;
 }
+
 a.pending {
   color: red;
 }
+
 a.transitioning {
   view-transition-name: my-transition;
 }
