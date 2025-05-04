@@ -4,11 +4,10 @@ import Button from '../button/Button';
 import { ValueContext } from '../../layout/Root';
 
 const Nav = () => {
-    const {handleLogOut,user}=use(ValueContext)
+    const { handleLogOut, user } = use(ValueContext)
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navigate = useNavigate()
     const { pathname } = useLocation()
-
 
     const links = <>
         <li>
@@ -33,6 +32,13 @@ const Nav = () => {
             </NavLink>
         </li>
 
+    </>
+    const conditionalShow = <>
+        {!user && <>
+            <Button className={pathname === '/signin' && 'bg-gray-300'} onClick={() => navigate('/signin')} label='Sign In' />
+            <Button className={pathname === '/signup' && 'bg-gray-300'} onClick={() => navigate('/signup')} label='Sign Up' />
+        </>}
+        {user && <Button onClick={handleLogOut} label='Log Out' />}
     </>
     return (
         <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -66,9 +72,7 @@ const Nav = () => {
                 </ul>
                 <ul className=" items-center hidden space-x-8 lg:flex">
 
-                    <Button className={pathname === '/signin' && 'bg-gray-300'} onClick={() => navigate('/signin')} label='Sign In' />
-                    <Button className={pathname === '/signup' && 'bg-gray-300'} onClick={() => navigate('/signup')} label='Sign Up' />
-                   { user&&<Button onClick={handleLogOut} label='Log Out' />}
+                    {conditionalShow}
 
                 </ul>
                 <div className="lg:hidden">
@@ -141,8 +145,7 @@ const Nav = () => {
                                 <nav>
                                     <ul className="space-y-4">
                                         {links}
-                                        <Button className={pathname === '/signin' && 'bg-gray-300'} onClick={() => navigate('/signin')} label='Sign In' />
-                                        <Button className={pathname === '/signup' && 'bg-gray-300'} onClick={() => navigate('/signup')} label='Sign Up' />
+                                        {conditionalShow}
                                     </ul>
                                 </nav>
                             </div>

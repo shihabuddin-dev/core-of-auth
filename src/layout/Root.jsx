@@ -1,12 +1,13 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 import Navbar from '../components/nav/Nav';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { auth } from '../firebase/firebase.init';
 
 export const ValueContext = createContext()
 
 const Root = () => {
+    const googleProvider = new GoogleAuthProvider();
     const [user, setUser] = useState(null)
     console.log(user)
     const handleLogin = (email, password) => {
@@ -22,6 +23,9 @@ const Root = () => {
             console.log(error)
         });
 
+    }
+    const createUserWithGoogle = () => {
+        return signInWithPopup(auth, googleProvider)
     }
 
     useEffect(() => {
@@ -43,7 +47,8 @@ const Root = () => {
         setUser,
         handleLogin,
         handleSingUp,
-        handleLogOut
+        handleLogOut,
+        createUserWithGoogle
 
     }
     return (
